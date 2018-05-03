@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+
+import fire
+
+from commands.project import Cli
+fire.Fire(Cli)

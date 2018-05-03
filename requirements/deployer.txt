@@ -1,0 +1,5 @@
+-r base.txt
+
+Fabric3==1.13.1.post1
+Jinja2==2.9.6
+boto3==1.4.4
