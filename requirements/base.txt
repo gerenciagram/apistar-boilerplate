@@ -1,1 +1,4 @@
 apistar
+apistar-cors
+fire
+python-dotenv
