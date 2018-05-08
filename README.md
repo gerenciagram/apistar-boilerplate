@@ -7,4 +7,4 @@ pip install -r requirements.txt
 ./project run
 ```
 
-Open your browser in http://localhost:5000/accounts
+Open your browser in http://localhost:5000/account
