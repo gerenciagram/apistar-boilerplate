@@ -1,4 +1,3 @@
-
 # apistar-boilerplate
 
 **Install and run**
