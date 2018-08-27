@@ -1,4 +1,9 @@
 apistar
 apistar-cors
+apistar_jwt
 fire
 python-dotenv
+gunicorn
+watchtower
+sqlalchemy
+alembic

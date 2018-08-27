@@ -40,6 +40,28 @@ class Cli:
             debug=debug
         )
 
+    def app(self):
+        from gunicorn.app.wsgiapp import WSGIApplication
+        WSGIApplication().run()
+
+    def migrate(self, version="head"):
+        from alembic import command
+        from commands.utils import alembic_cfg
+        command.upgrade(alembic_cfg(), version)
+
+    def downgrade(self, version="head"):
+        from alembic import command
+        from commands.utils import alembic_cfg
+        command.downgrade(alembic_cfg(), version)
+
+    def makemigrations(self, message=None, autogenerate=True):
+        from alembic import command
+        from commands.utils import alembic_cfg
+        command.revision(alembic_cfg(), message=message, autogenerate=autogenerate)
+        
+    def createuser(self, username, password):
+        pass
+        
     def deploy(self):
         pass
 
