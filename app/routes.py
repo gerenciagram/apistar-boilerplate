@@ -60,14 +60,11 @@ class RouteDecorator:
                     'data': view(*args, **kwargs)
                 }
             except Exception as exc:
-                data = None
-                if env['DEBUG']:
-                    import traceback
-                    data = ''.join(traceback.format_tb(exc.__traceback__))
                 logger.exception("Unexpected Server Error")
-                raise Exception(data)
+                raise
+
         # FIXME override return may break schema and documentation
-        wrapped_view.__annotations__['return'] = Dict[str, Any]
+        # wrapped_view.__annotations__['return'] = Dict[str, Any]
         routes.append(Route(self.path, self.method, wrapped_view, self.name))
         return wrapped_view
 
