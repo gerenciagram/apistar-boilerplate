@@ -1,0 +1,36 @@
+version: 1
+formatters:
+    json:
+        format: "[%(asctime)s] %(process)d %(levelname)s %(name)s:%(funcName)s:%(lineno)s - %(message)s"
+    plaintext:
+        format: "[%(asctime)s] %(process)d %(levelname)s %(name)s:%(funcName)s:%(lineno)s - %(message)s"
+handlers:
+    console:
+        (): logging.StreamHandler
+        level: DEBUG
+        formatter: plaintext
+    watchtower:
+        formatter: json
+        level: DEBUG
+        (): watchtower.CloudWatchLogHandler
+        log_group: api
+        stream_name:  loggable
+        boto3_profile_name: watchtowerlogger
+        send_interval: 1
+        create_log_group: False
+loggers:
+    boto:
+        handlers: [console]
+        propagate: NO
+    boto3:
+        handlers: [console]
+        propagate: NO
+    botocore:
+        handlers: [console]
+        propagate: NO
+    requests:
+        handlers: [console]
+        propagate: NO
+root:
+    level: INFO
+    handlers: [console, watchtower]

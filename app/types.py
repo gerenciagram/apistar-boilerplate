@@ -6,5 +6,6 @@ class Account(types.Type):
     email = validators.String(max_length=200)
     first_name = validators.String(max_length=100)
 
+
 class AccountId(types.Type):
     id = validators.Integer()

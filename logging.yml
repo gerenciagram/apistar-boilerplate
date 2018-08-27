@@ -1,0 +1,15 @@
+# AWS Config Profile
+version: 1
+formatters:
+    json:
+        format: "[%(asctime)s] %(process)d %(levelname)s %(name)s:%(funcName)s:%(lineno)s - %(message)s"
+    plaintext:
+        format: "[%(asctime)s] %(process)d %(levelname)s %(name)s:%(funcName)s:%(lineno)s - %(message)s"
+handlers:
+    console:
+        (): logging.StreamHandler
+        level: DEBUG
+        formatter: plaintext
+root:
+  level: DEBUG
+  handlers: [console]

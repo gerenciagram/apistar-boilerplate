@@ -1,11 +1,28 @@
 import logging
+import logging.config
+import yaml
+from pathlib import Path
 from IPython.terminal.prompts import Prompts, Token
-from traitlets.config.loader import Config
+from traitlets.config import Config
+
+from alembic.config import Config as AlembicConfig
+
+
+def alembic_cfg():
+    from app.environment import env
+
+    alembic_cfg = AlembicConfig("alembic.ini")
+    alembic_cfg.set_section_option("alembic", "sqlalchemy.url", env['DB_URL'])
+    return alembic_cfg
 
 
 def configure_debug_logging():
-    logging.basicConfig(level='DEBUG')
     logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+
+    with open(f'logging.yml', 'r') as log_config:
+        config_yml = log_config.read()
+        config_dict = yaml.load(config_yml)
+        logging.config.dictConfig(config_dict)
 
 
 def load_modules_wildcard(*module_names):
